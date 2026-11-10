@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Copy-ready AI prompts for each step of the 30-Second AI Safety Intro workshop at AI Safety Berlin.">
+<title>AI Safety Intro Prompts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+
+/* Layout: one reading column, a step rail of chips at the top, each step a block with its prompt in a copyable panel */
+:root {
+  --bg: #fbfbf8;
+  --surface: #ffffff;
+  --tint: #eef3fa;
+  --fg: #1a1d24;
+  --muted: #4a5568;
+  --line: #d6dee8;
+  --accent: #0b5cad;
+  --accent-fg: #ffffff;
+  --font-body: 'IBM Plex Sans', 'Segoe UI', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11161d; --surface: #182029; --tint: #1c2836; --fg: #e8edf3; --muted: #a9b6c6; --line: #2c3a4a; --accent: #7fb3ec; --accent-fg: #0d1520; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11161d; --surface: #182029; --tint: #1c2836; --fg: #e8edf3; --muted: #a9b6c6; --line: #2c3a4a; --accent: #7fb3ec; --accent-fg: #0d1520; color-scheme: dark;
+}
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 64px;
+}
+.wrap { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+header { display: flex; flex-direction: column; gap: 10px; }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+h1 { margin: 0; font-size: clamp(28px, 5vw, 38px); line-height: 1.15; text-wrap: balance; }
+h2 { margin: 0; font-size: 22px; line-height: 1.25; text-wrap: balance; }
+h3 { margin: 0; font-size: 16px; }
+p { margin: 0; }
+.lede { color: var(--muted); max-width: 62ch; }
+.handout-link { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; font-weight: 600; font-size: 15px; color: var(--accent-fg); background: var(--accent); text-decoration: none; padding: 10px 16px; border-radius: 8px; min-height: 44px; }
+.handout-link:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+nav.rail { display: flex; flex-wrap: wrap; gap: 8px; }
+nav.rail a { font-size: 14px; text-decoration: none; color: var(--fg); background: var(--tint); padding: 6px 12px; border-radius: 999px; }
+nav.rail a:hover, nav.rail a:focus-visible { background: var(--accent); color: var(--accent-fg); outline: none; }
+.howto { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.howto div { border-top: 2px solid var(--fg); padding-top: 8px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.howto b { font-size: 15px; }
+.howto span { color: var(--muted); font-size: 14px; }
+section.step { display: flex; flex-direction: column; gap: 12px; scroll-margin-top: 16px; }
+.step-head { display: flex; align-items: baseline; gap: 12px; }
+.num { font-family: var(--font-mono); font-size: 14px; color: var(--accent); font-weight: 500; flex-shrink: 0; }
+.when { color: var(--muted); font-size: 14px; }
+.prompt { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.prompt-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 12px; background: var(--tint); border-bottom: 1px solid var(--line); }
+.prompt-bar span { font-size: 13px; color: var(--muted); }
+button.copy { font: inherit; font-size: 14px; font-weight: 600; color: var(--accent-fg); background: var(--accent); border: 0; border-radius: 6px; padding: 6px 14px; cursor: pointer; min-height: 36px; }
+button.copy:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+pre { margin: 0; padding: 14px 16px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.55; white-space: pre-wrap; word-break: break-word; color: var(--fg); max-height: 420px; overflow: auto; }
+.paths { display: flex; flex-direction: column; gap: 10px; }
+.paths a { color: var(--accent); font-weight: 600; }
+.paths li { margin-bottom: 6px; }
+ul { margin: 0; padding-left: 20px; }
+.rule { border: 0; border-top: 1px solid var(--line); margin: 0; }
+footer { color: var(--muted); font-size: 14px; }
+@media (max-width: 560px) { .howto { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+html { scroll-behavior: smooth; }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<div class="eyebrow">AI Safety Berlin · Your 30-Second AI Safety Intro</div>
+<h1>Prompts to polish your intro at home</h1>
+<p class="lede">One prompt for each step of today's workshop. Each one tells the AI to use only your facts and to add nothing, so it sharpens your words without inflating your story.</p>
+<a class="handout-link" href="handout.pdf">Download the workshop handout (PDF)</a>
+<nav class="rail" aria-label="Steps">
+<a href="#setup">Start here</a>
+<a href="#step-1">1 Clarify</a>
+<a href="#step-2">2 Draft</a>
+<a href="#step-3">3 Practice</a>
+<a href="#step-4">4 LinkedIn</a>
+<a href="#step-5">5 Swapcard</a>
+<a href="#step-6">6 Outreach</a>
+<a href="#step-7">7 Follow-up</a>
+<a href="#paths">AI safety paths</a>
+</nav>
+</header>
+
+<div class="howto">
+<div><b>1. Open any AI chat</b><span>Claude, ChatGPT or similar. Use one chat for all steps.</span></div>
+<div><b>2. Paste "Start here" first</b><span>Fill in your facts once. Every step after it uses them.</span></div>
+<div><b>3. Paste the step you're on</b><span>Say or read the result out loud. If it doesn't sound like you, keep yours.</span></div>
+</div>
+
+<section class="step" id="setup">
+<div class="step-head"><span class="num">00</span><h2>Start here: your facts</h2></div>
+<p class="when">Paste this first, with the blanks filled in. Starting a new chat later? Paste it again.</p>
+<div class="prompt">
+<div class="prompt-bar"><span>Setup prompt</span><button class="copy" type="button" id="copy-setup">Copy</button></div>
+<pre>You are helping me introduce myself as I move into AI safety. I will ask you for several pieces of writing in this chat. For all of them:
+- Use ONLY the facts I give you. Never invent numbers, titles, employers, results, grants or dates. Name grants and programs exactly as I do.
+- If something is missing, put it in [square brackets] and list what's missing at the end.
+- Write in plain words, the way I would say it. Vary sentence length. No em dashes. Avoid: delve, leverage, robust, passionate, journey, landscape, "in today's fast-paced world", "not only... but also".
+- Do not flatter me. If something is weak, say so.
+
+MY FACTS
+- Name:
+- I am a: [career changer / student or recent graduate]
+- Career changers: past roles and years. Students: degree, thesis, projects:
+- What I bring (2 or 3 strengths, one proof each, with numbers if I have them):
+- Where I might fit (technical research / governance and policy / field-building and operations / communications and advocacy / grantmaking / other / not sure yet):
+- What I need right now:
+- Why AI safety (what pulled me in, in my own words, even if rough):
+- What I'm doing now in AI safety (courses, volunteering, projects, thesis):
+- Who I want to meet:
+- How people should contact me:
+
+Reply only with "Ready", plus up to 3 short questions about the gaps that would most improve the writing.</pre>
+</div>
+</section>
+
+<hr class="rule">
+
+<section class="step" id="step-1">
+<div class="step-head"><span class="num">01</span><h2>Clarify</h2></div>
+<p class="when">What you bring, where you might fit, and what you need.</p>
+<div class="prompt">
+<div class="prompt-bar"><span>Step 1 prompt</span><button class="copy" type="button" id="copy-1">Copy</button></div>
+<pre>STEP 1: CLARIFY
+Help me answer three questions: What do I bring? Where might I fit in AI safety? What do I need right now?
+
+Ask me one question at a time, up to 6 questions, starting with whatever my facts leave least clear. Then give me:
+- What I bring: 2 or 3 strengths, each with one piece of proof from my answers.
+- Where I might fit: the 2 paths that fit me best, with one reason each, plus one path that probably doesn't fit and why. Don't decide for me. My direction is a hypothesis, not a life decision.
+- What I need: one sentence. Then turn it into a question I could ask someone for their advice.</pre>
+</div>
+</section>
+
+<section class="step" id="step-2">
+<div class="step-head"><span class="num">02</span><h2>Draft your 30-second intro</h2></div>
+<p class="when">About 75 words, with a one-to-one ending and a group ending.</p>
+<div class="prompt">
+<div class="prompt-bar"><span>Step 2 prompt</span><button class="copy" type="button" id="copy-2">Copy</button></div>
+<pre>STEP 2: MY 30-SECOND INTRO
+Write my spoken intro, about 75 words (30 seconds out loud), using this shape:
+"Hello, I'm [name]. I spent [time] [doing what], then [what came next]. Most recently, I [my most relevant, specific thing]. [My thread: what I do best]. Now I'm bringing that to AI safety[, exploring X and Y]."
+
+Then write two endings. Keep everything before the ending identical:
+- One-to-one: one question asking the listener for their advice or experience.
+- Group: "If you [run or work on X], or know someone who does, let's chat!"
+
+Rules: write for the ear, not the page. Include one concrete detail a stranger can picture (a number, a name). Cut job jargon and hedges like "probably" or "most likely".
+
+Give me the word count. Then tell me which sentence a listener is most likely to forget, and how to fix it.</pre>
+</div>
+</section>
+
+<section class="step" id="step-3">
+<div class="step-head"><span class="num">03</span><h2>Practice</h2></div>
+<p class="when">The AI plays someone you just met. Say your intro out loud before you type it.</p>
+<div class="prompt">
+<div class="prompt-bar"><span>Step 3 prompt</span><button class="copy" type="button" id="copy-3">Copy</button></div>
+<pre>STEP 3: PRACTICE PARTNER
+Act as someone I just met at an AI safety meetup. I will type my intro the way I say it.
+
+Give me one strength and one fix, using these checks:
+- Clear: could you repeat my direction back in one sentence?
+- Specific: did you hear one concrete thing I did?
+- Ending: do you know what to talk to me about next?
+
+Then ask me the follow-up question you would most likely ask in person. After I answer, tell me in two sentences how my answer landed. Repeat for up to 3 rounds, one round at a time.</pre>
+</div>
+</section>
+
+<section class="step" id="step-4">
+<div class="step-head"><span class="num">04</span><h2>Your LinkedIn headline and About</h2></div>
+<p class="when">Three headline options, one About section, and an honest check.</p>
+<div class="prompt">
+<div class="prompt-bar"><span>Step 4 prompt</span><button class="copy" type="button" id="copy-4">Copy</button></div>
+<pre>STEP 4: LINKEDIN
+Use my facts and my 30-second intro from this chat.
+
+TASK 1: HEADLINE
+Give me 3 options, each under 120 characters.
+Career changer formula: [Target focus] | [Past role as proof] | [2 or 3 searchable skills]
+Student formula: [Degree] in [field] | Researching [specific problem] | [Skills]
+Rules: Lead with the AI safety area I want to be found in, not my past. Do not use "aspiring", "passionate", "seeking opportunities" or "student" as the lead. Skills must be words a recruiter would type into search. Every claim must come from my facts.
+
+TASK 2: ABOUT
+Write one About section in the first person, in plain words, with short paragraphs, under 1,500 characters.
+1. HOOK: A specific claim or moment from my facts, not a summary of me. It must work on its own, because only the first 3 lines show before "see more".
+2. STORY AND PROOF: Why AI safety and how my past connects. Then my strengths, each with its number. If I have no numbers, use projects, a thesis, evals built or a fellowship.
+3. NOW AND NEXT: What I'm working on, using keywords for the area I chose. End with who should contact me, about what, and how.
+
+TASK 3: CHECK
+Under 100 words, list: (a) anything you could not back with my facts, (b) the 3 weakest claims in the draft, (c) 2 questions that would make my About stronger.</pre>
+</div>
+</section>
+
+<section class="step" id="step-5">
+<div class="step-head"><span class="num">05</span><h2>Your Swapcard profile</h2></div>
+<p class="when">For anyone going to EAGx. Fill it in tonight.</p>
+<div class="prompt">
+<div class="prompt-bar"><span>Step 5 prompt</span><button class="copy" type="button" id="copy-5">Copy</button></div>
+<pre>STEP 5: SWAPCARD PROFILE
+Write my three Swapcard fields, using my facts and my LinkedIn About from this chat. People skim these in seconds to decide whether to book a 1:1 with me.
+- About me: 2 or 3 sentences. Who I am, what I bring, one proof point and my direction in AI safety.
+- How I can help: 2 or 3 specific things I can genuinely help others with.
+- Hoping to get: the kinds of people I want to meet, and what I would like from them (honest views, introductions, roles).
+
+Lead with the AI safety area I chose, not my past. No hedges. Then ask me one question that would make "Hoping to get" more specific.</pre>
+</div>
+</section>
+
+<section class="step" id="step-6">
+<div class="step-head"><span class="num">06</span><h2>Your outreach message</h2></div>
+<p class="when">Someone you haven't met yet. Fill in what's on their profile first.</p>
+<div class="prompt">
+<div class="prompt-bar"><span>Step 6 prompt</span><button class="copy" type="button" id="copy-6">Copy</button></div>
+<pre>STEP 6: OUTREACH MESSAGE
+I want to message someone I haven't met yet.
+- Their name:
+- What's on their profile (their project, a recent win, an open role, topics they want to discuss):
+- What I'd like to ask, or what I could offer:
+
+Write two versions using this shape:
+"Hi [name]! Glad to connect. I'm a [past role]-turned-[current role] moving into [area]. [Their project or recent news]. Would love to hear [one specific question], or happy to share [what I can offer]."
+1. Swapcard 1:1 request: 4 or 5 sentences.
+2. LinkedIn connection note: 200 characters or fewer, including spaces. Show the character count.
+
+No flattery and no job request. If something they listed matches what I can help with, offer that before asking.</pre>
+</div>
+</section>
+
+<section class="step" id="step-7">
+<div class="step-head"><span class="num">07</span><h2>Your follow-up message</h2></div>
+<p class="when">Within 48 hours of meeting someone. Connect first, without a note.</p>
+<div class="prompt">
+<div class="prompt-bar"><span>Step 7 prompt</span><button class="copy" type="button" id="copy-7">Copy</button></div>
+<pre>STEP 7: FOLLOW-UP MESSAGE
+I met someone and want to follow up within 48 hours.
+- Their name and where we met:
+- What we talked about:
+- Anything I promised (a link, an intro):
+- One ask, if any (a 20-minute call, an intro to someone they mentioned):
+
+Write one message under 80 words. Thank them, mention one specific thing from our chat, include anything I promised, and make at most one ask. Give before I ask where I can. Sound like a person, not a sales email.</pre>
+</div>
+</section>
+
+<hr class="rule">
+
+<section class="step" id="paths">
+<div class="step-head"><span class="num">+</span><h2>Not sure what the AI safety paths are?</h2></div>
+<ul class="paths">
+<li><a href="https://80000hours.org/career-reviews/ai-safety-researcher/">Technical research</a>: making AI systems safer from the inside (alignment, interpretability, evaluations). Usually needs a strong technical or ML background.</li>
+<li><a href="https://80000hours.org/career-reviews/ai-policy-and-strategy/">Governance and policy</a>: shaping the laws, standards and institutions that govern AI.</li>
+<li><a href="https://80000hours.org/career-reviews/ai-safety-fieldbuilding/">Field-building and operations</a>: running the programs, events and organizations that grow the field.</li>
+<li><a href="https://80000hours.org/career-reviews/ai-safety-advocacy/">Communications and advocacy</a>: explaining AI risk to the public, media and decision-makers.</li>
+<li><a href="https://80000hours.org/career-reviews/ai-safety-grantmaking/">Grantmaking</a>: deciding where funding goes.</li>
+</ul>
+<p><b>Where to start:</b> <a href="https://bluedot.org/courses/future-of-ai" style="color: var(--accent)">BlueDot's free 2-hour Future of AI course</a>, <a href="https://80000hours.org/ai/" style="color: var(--accent)">80,000 Hours AI careers</a> and <a href="https://80000hours.org/speak-with-us/" style="color: var(--accent)">free 1-on-1 career advice from 80,000 Hours</a>.</p>
+</section>
+
+<footer>Hosted by Aaron Pinto for AI Safety Berlin, 12 November 2026. Used your intro and it worked? Tell us at the next meetup.</footer>
+
+</div>
+
+<script>
+document.querySelectorAll('button.copy').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var pre = btn.closest('.prompt').querySelector('pre');
+    var text = pre.innerText;
+    var done = function () {
+      btn.textContent = 'Copied';
+      setTimeout(function () { btn.textContent = 'Copy'; }, 1800);
+    };
+    var fallback = function () {
+      var range = document.createRange();
+      range.selectNodeContents(pre);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      btn.textContent = 'Selected: copy it';
+      setTimeout(function () { btn.textContent = 'Copy'; }, 2500);
+    };
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } else { fallback(); }
+    } catch (e) { fallback(); }
+  });
+});
+</script>
+
+</body>
+</html>
